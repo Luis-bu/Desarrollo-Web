@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacto | WikiFlow</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/form.css}">
+  <script th:src="@{/js/form_script.js}" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+  <section class="split">
+    <div class="card">
+      <div class="card-head">
+        <h2 class="card-title">Buzón de Contacto</h2>
+        <p class="card-subtitle">Déjanos un mensaje. Se guardará en la base de datos y aparecerá en el historial.</p>
+      </div>
+
+      <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+      <form class="form" th:action="@{/formulario}" th:object="${registro}" method="post">
+        <div class="grid-2">
+          <div>
+            <label class="label">Nombre completo</label>
+            <input class="input" type="text" th:field="*{nombreCompleto}" placeholder="Ej: Lucho Pérez" required>
+          </div>
+          <div>
+            <label class="label">Correo</label>
+            <input class="input" type="email" th:field="*{correo}" placeholder="ejemplo@correo.com" required>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label class="label">Celular</label>
+            <input class="input" type="tel" th:field="*{celular}" placeholder="300 000 0000">
+          </div>
+          <div>
+            <label class="label">Tema</label>
+            <input class="input" type="text" th:field="*{tema}" placeholder="Asunto del mensaje">
+          </div>
+        </div>
+
+        <div>
+          <label class="label">Mensaje</label>
+          <textarea class="textarea" th:field="*{contenido}" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          <div class="hint">Tip: escribe con claridad y en 2–3 frases.</div>
+        </div>
+
+        <button class="button" type="submit">Enviar mensaje</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2 class="card-title">Historial</h2>
+        <p class="card-subtitle">Últimos mensajes guardados.</p>
+      </div>
+
+      <div class="empty" th:if="${#lists.isEmpty(buzon)}">
+        Aún no hay mensajes. Sé el primero 😄
+      </div>
+
+      <div class="table-wrap" th:if="${!#lists.isEmpty(buzon)}">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Tema</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="r : ${buzon}">
+              <td th:text="${r.id}">1</td>
+              <td th:text="${r.nombreCompleto}">Nombre</td>
+              <td th:text="${r.correo}">correo</td>
+              <td th:text="${r.tema}">tema</td>
+              <td>
+                <form th:action="@{'/formulario/delete/' + ${r.id}}" method="post">
+                  <button class="button button-ghost" type="submit">Borrar</button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

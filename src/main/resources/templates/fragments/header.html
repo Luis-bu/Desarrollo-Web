@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header" class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">WikiFlow</span>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-link"
+         th:classappend="${activeTab == 'proyecto'} ? ' is-active' : ''"
+         th:href="@{/proyecto}">Proyecto</a>
+
+      <a class="nav-link"
+         th:classappend="${activeTab == 'miembros'} ? ' is-active' : ''"
+         th:href="@{/miembros}">Miembros</a>
+
+      <a class="nav-link"
+         th:classappend="${activeTab == 'arquitectura'} ? ' is-active' : ''"
+         th:href="@{/arquitectura}">Arquitectura</a>
+
+      <a class="nav-link"
+         th:classappend="${activeTab == 'formulario'} ? ' is-active' : ''"
+         th:href="@{/formulario}">Contacto</a>
+    </nav>
+  </div>
+</header>
+</body>
+</html>

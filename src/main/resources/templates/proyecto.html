@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Proyecto | WikiFlow</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+  <section class="hero-card">
+    <h1 class="hero-title" th:text="${tituloProyecto}">WikiFlow</h1>
+    <p class="hero-subtitle" th:text="${resumen}">
+      Resumen del proyecto...
+    </p>
+
+    <div class="hero-grid">
+      <div class="mini-card">
+        <div class="mini-title">Objetivo</div>
+        <div class="mini-text">Centralizar documentación del proyecto en una web simple y clara.</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">Stack</div>
+        <div class="mini-text">Spring Boot, Thymeleaf, JPA, HTML/CSS/JS.</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">Secciones</div>
+        <div class="mini-text">Proyecto • Miembros • Arquitectura • Contacto.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title">Tecnologías usadas</h2>
+    <ul class="list">
+      <li>Spring Boot (MVC)</li>
+      <li>Thymeleaf (vistas server-side)</li>
+      <li>Spring Data JPA (persistencia)</li>
+      <li>H2 (local) / PostgreSQL (docker)</li>
+      <li>HTML + CSS + JavaScript</li>
+    </ul>
+  </section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

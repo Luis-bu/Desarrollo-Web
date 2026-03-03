@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Miembros | WikiFlow</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <script th:src="@{/js/script.js}" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+  <section class="card">
+    <div class="card-head">
+      <h2 class="card-title">Equipo</h2>
+      <p class="card-subtitle">Selecciona un integrante para ver sus datos.</p>
+    </div>
+
+    <div class="row">
+      <label class="label" for="memberSelect">Integrante</label>
+      <select class="select" id="memberSelect">
+        <option value="">— Selecciona —</option>
+        <option th:each="p : ${integrantes}"
+                th:value="${p.codigo}"
+                th:text="${p.nombreVisible}">
+        </option>
+      </select>
+    </div>
+
+    <div id="memberInfo" class="profile" style="display:none;">
+      <div class="profile-badge">
+        <span id="badgeInitials">WF</span>
+      </div>
+      <div class="profile-body">
+        <div class="profile-name" id="nombre"></div>
+        <div class="profile-meta">
+          <span class="pill" id="cargo"></span>
+          <a class="pill pill-link" id="correo" href="#" target="_blank" rel="noreferrer"></a>
+        </div>
+      </div>
+    </div>
+
+    <script th:inline="javascript">
+      const membersData = [[${integrantes}]];
+    </script>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title">Lista rápida</h2>
+    <div class="grid">
+      <div class="member-card" th:each="p : ${integrantes}">
+        <div class="member-top">
+          <div class="avatar" th:text="${#strings.substring(p.nombreVisible,0,1)}">A</div>
+          <div>
+            <div class="member-name" th:text="${p.nombreVisible}">Nombre</div>
+            <div class="member-role" th:text="${p.cargo}">Rol</div>
+          </div>
+        </div>
+        <div class="member-email" th:text="${p.correoContacto}">correo@correo.com</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

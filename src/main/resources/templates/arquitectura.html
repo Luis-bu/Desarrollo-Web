@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Arquitectura | WikiFlow</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+  <section class="card">
+    <h2 class="card-title">Arquitectura (MVC)</h2>
+    <p class="text">
+      Esta app sigue una arquitectura <strong>Modelo‑Vista‑Controlador</strong> para separar responsabilidades y mantener el
+      código fácil de entender.
+    </p>
+
+    <div class="mvc">
+      <div class="mvc-col">
+        <h3 class="mvc-title">Modelo</h3>
+        <ul class="list">
+          <li><strong>Contact</strong>: entidad JPA que representa mensajes del formulario.</li>
+          <li><strong>Member</strong>: modelo simple para mostrar integrantes.</li>
+        </ul>
+      </div>
+      <div class="mvc-col">
+        <h3 class="mvc-title">Controlador</h3>
+        <ul class="list">
+          <li><strong>WikiController</strong>: rutas de navegación (proyecto, miembros, arquitectura).</li>
+          <li><strong>ContactController</strong>: crear, listar y borrar mensajes.</li>
+        </ul>
+      </div>
+      <div class="mvc-col">
+        <h3 class="mvc-title">Vista</h3>
+        <ul class="list">
+          <li>Plantillas Thymeleaf: <code>proyecto.html</code>, <code>miembros.html</code>, <code>arquitectura.html</code>, <code>formulario.html</code>.</li>
+          <li>Componentes reutilizables: <code>fragments/header</code> y <code>fragments/footer</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="card-title">Capas de datos</h2>
+    <p class="text">El módulo de contacto usa un flujo simple:</p>
+    <ol class="list">
+      <li>Vista envía el formulario a <code>/formulario</code></li>
+      <li><code>ContactController</code> delega a <code>ContactService</code></li>
+      <li><code>ContactServiceImpl</code> persiste usando <code>ContactRepository</code></li>
+      <li>Se renderiza la vista con el historial del buzón</li>
+    </ol>
+  </section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

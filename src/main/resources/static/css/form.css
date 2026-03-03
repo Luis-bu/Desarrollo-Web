@@ -1,0 +1,93 @@
+/* Estilos del formulario (extra) */
+.split{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 14px;
+}
+
+.form{ display:flex; flex-direction:column; gap: 12px; }
+
+.grid-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.input, .textarea{
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(11,18,32,.25);
+  color: #e8eefc;
+  outline: none;
+}
+
+.textarea{ resize: vertical; min-height: 120px; }
+
+.hint{
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(232,238,252,.70);
+}
+
+.button{
+  padding: 11px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(110,231,255,.35);
+  background: linear-gradient(135deg, rgba(110,231,255,.20), rgba(167,139,250,.18));
+  color: #e8eefc;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.button:hover{ filter: brightness(1.08); }
+
+.button-ghost{
+  border-color: rgba(255,255,255,.18);
+  background: rgba(11,18,32,.15);
+  font-weight: 700;
+}
+
+.alert{
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(11,18,32,.22);
+  color: rgba(232,238,252,.85);
+}
+
+.alert.success{
+  border-color: rgba(110,231,255,.25);
+}
+
+.empty{
+  color: rgba(232,238,252,.75);
+  border: 1px dashed rgba(255,255,255,.14);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(11,18,32,.18);
+}
+
+.table-wrap{ overflow:auto; border-radius: 16px; border: 1px solid rgba(255,255,255,.10); }
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+.table th, .table td{
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  text-align: left;
+  color: rgba(232,238,252,.86);
+  font-size: 13px;
+}
+.table th{ color: rgba(232,238,252,.72); font-weight: 800; }
+.table tr:hover td{ background: rgba(18,31,54,.35); }
+
+.is-error{ outline: 2px solid rgba(255,80,80,.65); }
+
+@media (max-width: 900px){
+  .split{ grid-template-columns: 1fr; }
+  .grid-2{ grid-template-columns: 1fr; }
+}
