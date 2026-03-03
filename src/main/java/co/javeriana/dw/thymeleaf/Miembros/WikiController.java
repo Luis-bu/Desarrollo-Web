@@ -15,10 +15,10 @@ public class WikiController {
 
     @GetMapping("/proyecto")
     public String project(Model model) {
-        model.addAttribute("tituloProyecto", "WikiFlow");
+        model.addAttribute("tituloProyecto", "WikiPR");
         model.addAttribute(
                 "resumen",
-                "WikiFlow es un mini‑sitio hecho con Spring Boot + Thymeleaf para documentar un proyecto: descripción, equipo y arquitectura (MVC)."
+                "WikiPR es un mini‑sitio hecho con Spring Boot + Thymeleaf para documentar un proyecto: descripción, equipo y arquitectura (MVC)."
         );
         model.addAttribute("activeTab", "proyecto");
         return "proyecto";
